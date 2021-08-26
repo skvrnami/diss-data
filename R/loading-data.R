@@ -10,6 +10,28 @@ clean_dbf_excel_colnames <- function(df){
     df
 }
 
+categorize_titles <- function(x){
+    x <- tolower(x)
+    x <- dplyr::case_when(grepl("\\bprof\\b", x) ~ "Professor", # prof.
+                          grepl("\\bdoc\\b", x) ~ "Associate Professor (docent)", # doc.
+                          grepl("([a-z]+dr|ph\\.+d|phd|th\\.d|csc|drsc|dr)\\b", x) ~ "Doctor",
+                          grepl("\\b(ma|m[a-z]{2}|ing)\\b", x) ~ "Master", #Mgr, MgA, MA
+                          grepl("\\b(bc|ba|bsc)\\b", x) ~ "Bachelor", #Bc, BcA, BA, BSc
+                          TRUE ~ "No title")
+    factor(x, levels = c("No title", "Bachelor", "Master",
+                         "Doctor", "Associate Professor (docent)", "Professor"),
+           ordered = TRUE)
+}
+
+merge_and_recode_titles <- function(df){
+    df %>%
+        mutate(TITULY = case_when(!is.na(TITULPRED) & !is.na(TITULZA) ~ paste(TITULPRED, ", ", TITULZA), 
+                         !is.na(TITULPRED) ~ TITULPRED, 
+                         !is.na(TITULZA) ~ TITULZA,
+                         TRUE ~ NA_character_), 
+               TITUL_KATEGORIE = categorize_titles(TITULY))
+}
+
 extract_el_value <- function(x, el){
     x %>% html_node(el) %>% html_text()
 }
@@ -63,9 +85,6 @@ VSTRANA_MAP_98 <- c(
 )
 
 clean_ps <- function(df, VSTRANA_MAP){
-    
-    # - construct NSTRANA
-    # - rename VSTRANA
     df %>%
         mutate(NSTRANA = purrr::map_chr(VSTRANA, function(x) VSTRANA_MAP[as.character(x)]), 
                KSTRANA = purrr::map_chr(VSTRANA, function(x) VSTRANA_MAP[as.character(x)]), 
@@ -73,7 +92,8 @@ clean_ps <- function(df, VSTRANA_MAP){
                PRIJMENI = stringr::str_remove(PRIJMENI, ",[A-Za-z,\\. ]+")
                ) %>%
         select(-VSTRANA) %>%
-        rename(NAZEV_STRK = NAZEV_VSTRANA)
+        rename(NAZEV_STRK = NAZEV_VSTRANA, 
+               TITULPRED = TITUL)
         
 }
 
@@ -162,20 +182,28 @@ read_cns_xml <- function(path){
 
 read_candidates <- function(list_path, parties_df, cpp_df, cns_df, 
                             cleanup_f = pass){
+    year <- as.numeric(stringr::str_extract(list_path, "[0-9]{4}"))
     read_excel(list_path) %>%
         cleanup_f %>%
         left_join(., parties_df, by = "KSTRANA") %>%
         left_join(., cpp_df, by = "PSTRANA") %>%
-        left_join(., cns_df, by = "NSTRANA")
+        left_join(., cns_df, by = "NSTRANA") %>%
+        mutate(row_id = row_number(), 
+               ROK_NAROZENI = year - VEK) %>%
+        merge_and_recode_titles
 }
 
 read_municipal_candidates <- function(list_path, parties_df, cpp_df, cns_df, 
                             cleanup_f = pass){
+    year <- as.numeric(stringr::str_extract(list_path, "[0-9]{4}"))
     read_excel(list_path) %>%
         cleanup_f %>%
         left_join(., parties_df, by = c("KODZASTUP", "COBVODU", "POR_STR_HL", "OSTRANA")) %>%
         left_join(., cpp_df, by = "PSTRANA") %>%
-        left_join(., cns_df, by = "NSTRANA")
+        left_join(., cns_df, by = "NSTRANA") %>%
+        mutate(row_id = row_number(), 
+               ROK_NAROZENI = year - VEK) %>%
+        merge_and_recode_titles
 }
 
 parse_ep_regkand_row <- function(x){
@@ -184,6 +212,7 @@ parse_ep_regkand_row <- function(x){
         PORCISLO = extract_el_value_num(x, "porcislo"), 
         JMENO = extract_el_value(x, "jmeno"), 
         PRIJMENI = extract_el_value(x, "prijmeni"), 
+        VEK = extract_el_value_num(x, "vek"),
         TITULPRED = extract_el_value(x, "titulpred"), 
         TITULZA = extract_el_value(x, "titulza"), 
         BYDLISTEN = extract_el_value(x, "bydlisten"), 
@@ -201,11 +230,15 @@ parse_ep_regkand_row <- function(x){
 
 read_candidates_xml <- function(list_path, parties_df, cpp_df, cns_df, 
                                 cleanup_f = pass){
+    year <- as.numeric(stringr::str_extract(list_path, "[0-9]{4}"))
     read_html(list_path, encoding = "WINDOWS-1250") %>%
         html_nodes("ep_regkand_row") %>%
         purrr::map_df(., parse_ep_regkand_row) %>%
         cleanup_f %>%
         left_join(., parties_df, by = "KSTRANA") %>%
         left_join(., cpp_df, by = "PSTRANA") %>%
-        left_join(., cns_df, by = "NSTRANA")
+        left_join(., cns_df, by = "NSTRANA") %>%
+        mutate(row_id = row_number(), 
+               ROK_NAROZENI = year - VEK) %>%
+        merge_and_recode_titles
 }

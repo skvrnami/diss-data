@@ -2,9 +2,12 @@ library(targets)
 library(tarchetypes)
 
 source("R/loading-data.R")
+source("R/matching.R")
 
-tar_option_set(packages = c("dplyr", "rvest", "here", "listr", # "rimr", 
-                            "readxl"))
+tar_option_set(packages = c("dplyr", "rvest", "here", # "listr", 
+                            "rimr", "readxl"))
+
+# TODO: zkontrolovat rekodovani titulu
 
 list(
     
@@ -25,14 +28,21 @@ list(
         cpp <- read_cpp(here("data", "PS1996", "CPPPS96.xlsx"), function(x) {x %>% rename(ZKRATKAP8 = ZKRATKAP)})
         read_excel(here("data", "PS1996", "PS96-RK.xlsx")) %>%
             clean_ps(., VSTRANA_MAP_96) %>%
-            left_join(., cpp, by = "PSTRANA")
+            left_join(., cpp, by = "PSTRANA") %>%
+            merge_and_recode_titles %>%
+            mutate(row_id = row_number(), 
+                   ROK_NAROZENI = 1996 - VEK)
     }),
     
+    # FIXME: Missing NSTRANA (MODS)
     tar_target(psp_1998, command = {
         cpp <- read_cpp(here("data", "PS1998", "CPPPS98.xlsx"), function(x) {x %>% rename(ZKRATKAP8 = ZKRATKAP)})
         read_excel(here("data", "PS1998", "PS98-RK.xlsx")) %>%
             clean_ps(., VSTRANA_MAP_98) %>%
-            left_join(., cpp, by = "PSTRANA")
+            left_join(., cpp, by = "PSTRANA") %>%
+            merge_and_recode_titles %>%
+            mutate(row_id = row_number(), 
+                   ROK_NAROZENI = 1998 - VEK)
     }),
     
     tar_target(psp_2002, command = {
@@ -41,7 +51,10 @@ list(
         read_excel(here("data", "PS2002", "PS02-RK.xlsx")) %>%
             rename(NAZEV_STRK = KSTRANA_NAZEV) %>%
             left_join(., cpp, by = "PSTRANA") %>%
-            left_join(., cns, by = "NSTRANA")
+            left_join(., cns, by = "NSTRANA") %>%
+            merge_and_recode_titles %>%
+            mutate(row_id = row_number(), 
+                   ROK_NAROZENI = 1998 - VEK)
     }),
     
     tar_target(psp_2006, command = {
@@ -92,6 +105,24 @@ list(
         read_candidates(here("data", "PS2021", "PS2021reg20210824_xlsx", "psrk.xlsx"), 
                         psp_parties, cpp, cns)
     }), 
+    
+    # Matching
+    # TODO: non-consecutive matching (e.g. 1996 - 2002)
+    
+    tar_target(psp_96_98, match_psp(psp_1996, psp_1998) %>% rename_cols(., "psp_1996", "psp_1998")), 
+    
+    # FIXME: low number of matches?
+    tar_target(psp_98_02, match_psp(psp_1998, psp_2002)), 
+    
+    tar_target(psp_02_06, match_psp(psp_2002, psp_2006)), 
+    
+    tar_target(psp_06_10, match_psp(psp_2006, psp_2010)), 
+    
+    tar_target(psp_10_13, match_psp(psp_2010, psp_2013)), 
+    
+    tar_target(psp_13_17, match_psp(psp_2013, psp_2017)), 
+    
+    tar_target(psp_17_21, match_psp(psp_2017, psp_2021)),
     
     #######################################################
     # Regional elections
