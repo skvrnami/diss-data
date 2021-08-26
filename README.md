@@ -2,6 +2,10 @@
 
 Candidates
 
+## Conceptual TODO
+- [ ] link to parlgov?
+- [ ] link to mayors 
+
 ## Usage
 
 ```

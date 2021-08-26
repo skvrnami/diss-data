@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<CPP DATGENER="2014-05-21T12:04:25" xmlns="http://www.volby.cz/vol/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.volby.cz/vol/ cpp.xsd">
+ <CPP_ROW>
+  <PSTRANA>1</PSTRANA>
+  <NAZEV_STRP>Křesťan.a demokrat.unie-Českosl.strana lidová</NAZEV_STRP>
+  <ZKRATKAP30>Křesť.demokr.unie-Čs.str.lid.</ZKRATKAP30>
+  <ZKRATKAP8>KDU-ČSL</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>2</PSTRANA>
+  <NAZEV_STRP>Česká strana národně sociální</NAZEV_STRP>
+  <ZKRATKAP30>Česká strana národně sociální</ZKRATKAP30>
+  <ZKRATKAP8>ČSNS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>4</PSTRANA>
+  <NAZEV_STRP>Liberálně demokratická strana</NAZEV_STRP>
+  <ZKRATKAP30>Liberálně demokratická strana</ZKRATKAP30>
+  <ZKRATKAP8>LDS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>5</PSTRANA>
+  <NAZEV_STRP>Strana zelených</NAZEV_STRP>
+  <ZKRATKAP30>Strana zelených</ZKRATKAP30>
+  <ZKRATKAP8>SZ</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>7</PSTRANA>
+  <NAZEV_STRP>Česká strana sociálně demokratická</NAZEV_STRP>
+  <ZKRATKAP30>Česká str.sociálně demokrat.</ZKRATKAP30>
+  <ZKRATKAP8>ČSSD</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>8</PSTRANA>
+  <NAZEV_STRP>Podnikatelsko živnostenská strana</NAZEV_STRP>
+  <ZKRATKAP30>Podnikatelsko živnosten.strana</ZKRATKAP30>
+  <ZKRATKAP8>PŽS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>9</PSTRANA>
+  <NAZEV_STRP>Nezávislá iniciativa (NEI)</NAZEV_STRP>
+  <ZKRATKAP30>Nezávislá iniciativa (NEI)</ZKRATKAP30>
+  <ZKRATKAP8>NI(NEI)</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>10</PSTRANA>
+  <NAZEV_STRP>Československá strana humanistické internacionály</NAZEV_STRP>
+  <ZKRATKAP30>Čs.str.humanist.internacionály</ZKRATKAP30>
+  <ZKRATKAP8>ČSHI</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>11</PSTRANA>
+  <NAZEV_STRP>Sdružení pro republiku-Republikán.strana Českosl.</NAZEV_STRP>
+  <ZKRATKAP30>Sdruž.pro rep.-Republ.str.Čsl.</ZKRATKAP30>
+  <ZKRATKAP8>SPR-RSČ</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>12</PSTRANA>
+  <NAZEV_STRP>Romská občanská iniciativa ČR</NAZEV_STRP>
+  <ZKRATKAP30>Romská občanská iniciativa ČR</ZKRATKAP30>
+  <ZKRATKAP8>ROI ČR</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>13</PSTRANA>
+  <NAZEV_STRP>Občanská demokratická aliance</NAZEV_STRP>
+  <ZKRATKAP30>Občanská demokratická aliance</ZKRATKAP30>
+  <ZKRATKAP8>ODA</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>14</PSTRANA>
+  <NAZEV_STRP>Republikánská unie</NAZEV_STRP>
+  <ZKRATKAP30>Republikánská unie</ZKRATKAP30>
+  <ZKRATKAP8>RU</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>16</PSTRANA>
+  <NAZEV_STRP>Organizace nezávislých Rumunů</NAZEV_STRP>
+  <ZKRATKAP30>Organizace nezávislých Rumunů</ZKRATKAP30>
+  <ZKRATKAP8>ONR</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>17</PSTRANA>
+  <NAZEV_STRP>Hnutí zemědělců</NAZEV_STRP>
+  <ZKRATKAP30>Hnutí zemědělců</ZKRATKAP30>
+  <ZKRATKAP8>HZ</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>20</PSTRANA>
+  <NAZEV_STRP>Strana za životní jistoty</NAZEV_STRP>
+  <ZKRATKAP30>Strana za životní jistoty</ZKRATKAP30>
+  <ZKRATKAP8>SŽJ</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>21</PSTRANA>
+  <NAZEV_STRP>Republikán.str.zemědělského a malorolnického lidu</NAZEV_STRP>
+  <ZKRATKAP30>Rep.str.zeměd.a maloroln.lidu</ZKRATKAP30>
+  <ZKRATKAP8>RSZML</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>22</PSTRANA>
+  <NAZEV_STRP>Agrární strana</NAZEV_STRP>
+  <ZKRATKAP30>Agrární strana</ZKRATKAP30>
+  <ZKRATKAP8>AS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>24</PSTRANA>
+  <NAZEV_STRP>Konzervativní strana</NAZEV_STRP>
+  <ZKRATKAP30>Konzervativní strana</ZKRATKAP30>
+  <ZKRATKAP8>KONS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>25</PSTRANA>
+  <NAZEV_STRP>Celostátní aktiv občanů</NAZEV_STRP>
+  <ZKRATKAP30>Celostátní aktiv občanů</ZKRATKAP30>
+  <ZKRATKAP8>CAO</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>26</PSTRANA>
+  <NAZEV_STRP>Demokratická unie zdraví a sportu</NAZEV_STRP>
+  <ZKRATKAP30>Demokrat.unie zdraví a sportu</ZKRATKAP30>
+  <ZKRATKAP8>DUZS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>28</PSTRANA>
+  <NAZEV_STRP>Demokratická strana Československa</NAZEV_STRP>
+  <ZKRATKAP30>Demokratická strana Českoslov.</ZKRATKAP30>
+  <ZKRATKAP8>DSČ</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>29</PSTRANA>
+  <NAZEV_STRP>Strana svobodných demokratů</NAZEV_STRP>
+  <ZKRATKAP30>Strana svobodných demokratů</ZKRATKAP30>
+  <ZKRATKAP8>SSD</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>30</PSTRANA>
+  <NAZEV_STRP>Permanentní opozicí za demokracii</NAZEV_STRP>
+  <ZKRATKAP30>Permanentní opozicí za demokr.</ZKRATKAP30>
+  <ZKRATKAP8>POZD</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>31</PSTRANA>
+  <NAZEV_STRP>Strana evropského domu</NAZEV_STRP>
+  <ZKRATKAP30>Strana evropského domu</ZKRATKAP30>
+  <ZKRATKAP8>SED</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>33</PSTRANA>
+  <NAZEV_STRP>Občanská společenská aktivita</NAZEV_STRP>
+  <ZKRATKAP30>Občanská společenská aktivita</ZKRATKAP30>
+  <ZKRATKAP8>OSA</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>37</PSTRANA>
+  <NAZEV_STRP>Strana demokratické levice</NAZEV_STRP>
+  <ZKRATKAP30>Strana demokratické levice</ZKRATKAP30>
+  <ZKRATKAP8>SDL</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>38</PSTRANA>
+  <NAZEV_STRP>Strana obrany kultury</NAZEV_STRP>
+  <ZKRATKAP30>Strana obrany kultury</ZKRATKAP30>
+  <ZKRATKAP8>SOK</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>40</PSTRANA>
+  <NAZEV_STRP>Klub angažovaných nestraníků</NAZEV_STRP>
+  <ZKRATKAP30>Klub angažovaných nestraníků</ZKRATKAP30>
+  <ZKRATKAP8>KAN</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>43</PSTRANA>
+  <NAZEV_STRP>Pravá alternativa</NAZEV_STRP>
+  <ZKRATKAP30>Pravá alternativa</ZKRATKAP30>
+  <ZKRATKAP8>PA</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>45</PSTRANA>
+  <NAZEV_STRP>Strana drobných podnikatelů</NAZEV_STRP>
+  <ZKRATKAP30>Strana drobných podnikatelů</ZKRATKAP30>
+  <ZKRATKAP8>SDP</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>46</PSTRANA>
+  <NAZEV_STRP>Moravská národní strana</NAZEV_STRP>
+  <ZKRATKAP30>Moravská národní strana</ZKRATKAP30>
+  <ZKRATKAP8>MNS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>47</PSTRANA>
+  <NAZEV_STRP>Komunistická strana Čech a Moravy</NAZEV_STRP>
+  <ZKRATKAP30>Komunistická str.Čech a Moravy</ZKRATKAP30>
+  <ZKRATKAP8>KSČM</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>49</PSTRANA>
+  <NAZEV_STRP>Hnutí angažovaných Romů</NAZEV_STRP>
+  <ZKRATKAP30>Hnutí angažovaných Romů</ZKRATKAP30>
+  <ZKRATKAP8>HAR</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>50</PSTRANA>
+  <NAZEV_STRP>Politická strana žen a matek Československa</NAZEV_STRP>
+  <ZKRATKAP30>Politická str.žen a matek Čsl.</ZKRATKAP30>
+  <ZKRATKAP8>PSŽM</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>51</PSTRANA>
+  <NAZEV_STRP>Národně demokratická strana</NAZEV_STRP>
+  <ZKRATKAP30>Národně demokratická strana</ZKRATKAP30>
+  <ZKRATKAP8>NDS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>53</PSTRANA>
+  <NAZEV_STRP>Občanská demokratická strana</NAZEV_STRP>
+  <ZKRATKAP30>Občanská demokratická strana</ZKRATKAP30>
+  <ZKRATKAP8>ODS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>55</PSTRANA>
+  <NAZEV_STRP>Koruna Česká (monarch.str.Čech, Moravy a Slezska)</NAZEV_STRP>
+  <ZKRATKAP30>Koruna Česká (monarch.strana)</ZKRATKAP30>
+  <ZKRATKAP8>KČ</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>59</PSTRANA>
+  <NAZEV_STRP>Str.zdrav.postiž.,důchodců a sociálně slab.občanů</NAZEV_STRP>
+  <ZKRATKAP30>Str.zdrav.postiž.,důch.,slab.</ZKRATKAP30>
+  <ZKRATKAP8>SZP-DO</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>63</PSTRANA>
+  <NAZEV_STRP>Republikáni</NAZEV_STRP>
+  <ZKRATKAP30>Republikáni</ZKRATKAP30>
+  <ZKRATKAP8>REP</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>64</PSTRANA>
+  <NAZEV_STRP>Strana podnikatelů, živnostníků a rolníků ČR</NAZEV_STRP>
+  <ZKRATKAP30>Str.podnikat.,živnost.,rolníků</ZKRATKAP30>
+  <ZKRATKAP8>SPŽR</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>65</PSTRANA>
+  <NAZEV_STRP>Demokraté 92</NAZEV_STRP>
+  <ZKRATKAP30>Demokraté 92</ZKRATKAP30>
+  <ZKRATKAP8>D 92</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>68</PSTRANA>
+  <NAZEV_STRP>Masarykova demokratická strana</NAZEV_STRP>
+  <ZKRATKAP30>Masarykova demokratická strana</ZKRATKAP30>
+  <ZKRATKAP8>MDS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>72</PSTRANA>
+  <NAZEV_STRP>Coexistentia</NAZEV_STRP>
+  <ZKRATKAP30>Coexistentia</ZKRATKAP30>
+  <ZKRATKAP8>COEX</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>73</PSTRANA>
+  <NAZEV_STRP>Republikánská strana</NAZEV_STRP>
+  <ZKRATKAP30>Republikánská strana</ZKRATKAP30>
+  <ZKRATKAP8>RS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>74</PSTRANA>
+  <NAZEV_STRP>Strana demokratického socialismu</NAZEV_STRP>
+  <ZKRATKAP30>Strana demokrat.socialismu</ZKRATKAP30>
+  <ZKRATKAP8>SDS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>76</PSTRANA>
+  <NAZEV_STRP>Československá strana socialistická</NAZEV_STRP>
+  <ZKRATKAP30>Českosl.strana socialistická</ZKRATKAP30>
+  <ZKRATKAP8>ČSS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>77</PSTRANA>
+  <NAZEV_STRP>Česká pravice</NAZEV_STRP>
+  <ZKRATKAP30>Česká pravice</ZKRATKAP30>
+  <ZKRATKAP8>ČP</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>78</PSTRANA>
+  <NAZEV_STRP>Východoevropské národnostní politické hnutí v ČR</NAZEV_STRP>
+  <ZKRATKAP30>Východoevr.národnost.pol.hnutí</ZKRATKAP30>
+  <ZKRATKAP8>VENPH</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>79</PSTRANA>
+  <NAZEV_STRP>Sdružení důchodců České republiky</NAZEV_STRP>
+  <ZKRATKAP30>Sdružení důchodců České rep.</ZKRATKAP30>
+  <ZKRATKAP8>SDČR</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>82</PSTRANA>
+  <NAZEV_STRP>Moravská demokratická strana</NAZEV_STRP>
+  <ZKRATKAP30>Moravská demokratická strana</ZKRATKAP30>
+  <ZKRATKAP8>MoDS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>83</PSTRANA>
+  <NAZEV_STRP>Hnutí samosprávné Moravy a Slezska</NAZEV_STRP>
+  <ZKRATKAP30>Hnutí samosprávné Moravy a Sl.</ZKRATKAP30>
+  <ZKRATKAP8>HSMS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>85</PSTRANA>
+  <NAZEV_STRP>Pražané Praze</NAZEV_STRP>
+  <ZKRATKAP30>Pražané Praze</ZKRATKAP30>
+  <ZKRATKAP8>PP</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>86</PSTRANA>
+  <NAZEV_STRP>Iniciativa pražských občanů</NAZEV_STRP>
+  <ZKRATKAP30>Iniciativa pražských občanů</ZKRATKAP30>
+  <ZKRATKAP8>IPO</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>88</PSTRANA>
+  <NAZEV_STRP>NEZÁVISLÍ</NAZEV_STRP>
+  <ZKRATKAP30>NEZÁVISLÍ</ZKRATKAP30>
+  <ZKRATKAP8>NEZ</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>91</PSTRANA>
+  <NAZEV_STRP>Sdružení nezávislých kandidátů města Č.Budějovice</NAZEV_STRP>
+  <ZKRATKAP30>Sdruž.nezáv.kand.města Č.Buděj</ZKRATKAP30>
+  <ZKRATKAP8>SNK ČB</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>92</PSTRANA>
+  <NAZEV_STRP>Živnostenská strana</NAZEV_STRP>
+  <ZKRATKAP30>Živnostenská strana</ZKRATKAP30>
+  <ZKRATKAP8>ŽS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>93</PSTRANA>
+  <NAZEV_STRP>Komunistická strana Československa</NAZEV_STRP>
+  <ZKRATKAP30>Komunistická str.Českosloven.</ZKRATKAP30>
+  <ZKRATKAP8>KSČ</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>96</PSTRANA>
+  <NAZEV_STRP>Hnutí proti kriminalitě</NAZEV_STRP>
+  <ZKRATKAP30>Hnutí proti kriminalitě</ZKRATKAP30>
+  <ZKRATKAP8>HPK</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>97</PSTRANA>
+  <NAZEV_STRP>Strana Přírodního Zákona</NAZEV_STRP>
+  <ZKRATKAP30>Strana Přírodního Zákona</ZKRATKAP30>
+  <ZKRATKAP8>Přírodní</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>98</PSTRANA>
+  <NAZEV_STRP>Pravý Blok-str.za ODVOLATELNOST politiků,REFERENDA</NAZEV_STRP>
+  <ZKRATKAP30>Pravý Blok</ZKRATKAP30>
+  <ZKRATKAP8>PB</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>99</PSTRANA>
+  <NAZEV_STRP>Bez politické příslušnosti</NAZEV_STRP>
+  <ZKRATKAP30>Bez politické příslušnosti</ZKRATKAP30>
+  <ZKRATKAP8>BEZPP</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>100</PSTRANA>
+  <NAZEV_STRP>Humanistická aliance</NAZEV_STRP>
+  <ZKRATKAP30>Humanistická aliance</ZKRATKAP30>
+  <ZKRATKAP8>H.A.</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>101</PSTRANA>
+  <NAZEV_STRP>Strana venkova - spojené občanské síly</NAZEV_STRP>
+  <ZKRATKAP30>Str.venkova-spoj.občan.síly</ZKRATKAP30>
+  <ZKRATKAP8>SV SOS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>102</PSTRANA>
+  <NAZEV_STRP>Unie svobody - Demokratická unie</NAZEV_STRP>
+  <ZKRATKAP30>Unie svobody-Demokratická unie</ZKRATKAP30>
+  <ZKRATKAP8>US-DEU</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>103</PSTRANA>
+  <NAZEV_STRP>Strana pro otevřenou společnost</NAZEV_STRP>
+  <ZKRATKAP30>Str.pro otevřenou společnost</ZKRATKAP30>
+  <ZKRATKAP8>SOS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>104</PSTRANA>
+  <NAZEV_STRP>Občanská koalice - Politický klub</NAZEV_STRP>
+  <ZKRATKAP30>Občanská koalice-Polit.klub</ZKRATKAP30>
+  <ZKRATKAP8>OK</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>106</PSTRANA>
+  <NAZEV_STRP>Alternativa 2000</NAZEV_STRP>
+  <ZKRATKAP30>Alternativa 2000</ZKRATKAP30>
+  <ZKRATKAP8>A2000</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>108</PSTRANA>
+  <NAZEV_STRP>Hnutí za prosperitu Brna</NAZEV_STRP>
+  <ZKRATKAP30>Hnutí za prosperitu Brna</ZKRATKAP30>
+  <ZKRATKAP8>HPB</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>109</PSTRANA>
+  <NAZEV_STRP>Zlínské hnutí nezávislých</NAZEV_STRP>
+  <ZKRATKAP30>Zlínské hnutí nezávislých</ZKRATKAP30>
+  <ZKRATKAP8>ZHN</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>110</PSTRANA>
+  <NAZEV_STRP>Demokratická regionální strana</NAZEV_STRP>
+  <ZKRATKAP30>Demokratická regionální strana</ZKRATKAP30>
+  <ZKRATKAP8>DRS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>111</PSTRANA>
+  <NAZEV_STRP>Pravá volba pro Plzeň</NAZEV_STRP>
+  <ZKRATKAP30>Pravá volba pro Plzeň</ZKRATKAP30>
+  <ZKRATKAP8>PVP</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>112</PSTRANA>
+  <NAZEV_STRP>Hnutí nezávislých za harmonický rozvoj obcí a měst</NAZEV_STRP>
+  <ZKRATKAP30>Hn.za harm.rozvoj obcí a měst</ZKRATKAP30>
+  <ZKRATKAP8>HNHRM</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>113</PSTRANA>
+  <NAZEV_STRP>Volba pro město</NAZEV_STRP>
+  <ZKRATKAP30>Volba pro město</ZKRATKAP30>
+  <ZKRATKAP8>VPM</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>114</PSTRANA>
+  <NAZEV_STRP>Hnutí pro Havířov</NAZEV_STRP>
+  <ZKRATKAP30>Hnutí pro Havířov</ZKRATKAP30>
+  <ZKRATKAP8>HPH</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>115</PSTRANA>
+  <NAZEV_STRP>Nezávislé sdružení občanů Blanska</NAZEV_STRP>
+  <ZKRATKAP30>Nezáv.sdruž.občanů Blanska</ZKRATKAP30>
+  <ZKRATKAP8>NSOB</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>116</PSTRANA>
+  <NAZEV_STRP>Občanská liga FORUM</NAZEV_STRP>
+  <ZKRATKAP30>Občanská liga FORUM</ZKRATKAP30>
+  <ZKRATKAP8>OLF</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>117</PSTRANA>
+  <NAZEV_STRP>1.Sdružení nezávislých kandidátů Tábor</NAZEV_STRP>
+  <ZKRATKAP30>1.Sdruž.nezáv.kandidátů Tábor</ZKRATKAP30>
+  <ZKRATKAP8>1.SNK</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>118</PSTRANA>
+  <NAZEV_STRP>Nezávislé sdružení sportovců města Mostu</NAZEV_STRP>
+  <ZKRATKAP30>Nezáv.sdruž.sport.města Mostu</ZKRATKAP30>
+  <ZKRATKAP8>NSS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>119</PSTRANA>
+  <NAZEV_STRP>Unie pro sport a zdraví</NAZEV_STRP>
+  <ZKRATKAP30>Unie pro sport a zdraví</ZKRATKAP30>
+  <ZKRATKAP8>USZ</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>120</PSTRANA>
+  <NAZEV_STRP>Aliance nezávislých občanů</NAZEV_STRP>
+  <ZKRATKAP30>Aliance nezávislých občanů</ZKRATKAP30>
+  <ZKRATKAP8>ANO</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>121</PSTRANA>
+  <NAZEV_STRP>Národní prosperita</NAZEV_STRP>
+  <ZKRATKAP30>Národní prosperita</ZKRATKAP30>
+  <ZKRATKAP8>NP</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>122</PSTRANA>
+  <NAZEV_STRP>Českobudějovická nezávislá nová volba</NAZEV_STRP>
+  <ZKRATKAP30>Českobudějov.nezáv.nová volba</ZKRATKAP30>
+  <ZKRATKAP8>ČbNNV</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>123</PSTRANA>
+  <NAZEV_STRP>České hnutí za národní jednotu</NAZEV_STRP>
+  <ZKRATKAP30>České hnutí za národní jednotu</ZKRATKAP30>
+  <ZKRATKAP8>ČHNJ</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>124</PSTRANA>
+  <NAZEV_STRP>Nové hnutí</NAZEV_STRP>
+  <ZKRATKAP30>Nové hnutí</ZKRATKAP30>
+  <ZKRATKAP8>NH</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>125</PSTRANA>
+  <NAZEV_STRP>Unie pro Evropu</NAZEV_STRP>
+  <ZKRATKAP30>Unie pro Evropu</ZKRATKAP30>
+  <ZKRATKAP8>UPE</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>126</PSTRANA>
+  <NAZEV_STRP>Nestraníci pro Moravu</NAZEV_STRP>
+  <ZKRATKAP30>Nestraníci pro Moravu</ZKRATKAP30>
+  <ZKRATKAP8>NPM</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>127</PSTRANA>
+  <NAZEV_STRP>Republikáni Miroslava Sládka</NAZEV_STRP>
+  <ZKRATKAP30>Republikáni Miroslava Sládka</ZKRATKAP30>
+  <ZKRATKAP8>RMS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>128</PSTRANA>
+  <NAZEV_STRP>Akce za zrušení Senátu a proti vytun.důchod.fondů</NAZEV_STRP>
+  <ZKRATKAP30>Akce za zruš.Senátu a proti t.</ZKRATKAP30>
+  <ZKRATKAP8>AZSD</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>129</PSTRANA>
+  <NAZEV_STRP>SNK sdružení nezávislých</NAZEV_STRP>
+  <ZKRATKAP30>SNK sdružení nezávislých</ZKRATKAP30>
+  <ZKRATKAP8>SNK</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>130</PSTRANA>
+  <NAZEV_STRP>Strana svobodných severu</NAZEV_STRP>
+  <ZKRATKAP30>Strana svobodných severu</ZKRATKAP30>
+  <ZKRATKAP8>SSS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>131</PSTRANA>
+  <NAZEV_STRP>Strana občanského porozumění</NAZEV_STRP>
+  <ZKRATKAP30>Strana občanského porozumění</ZKRATKAP30>
+  <ZKRATKAP8>SOP</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>132</PSTRANA>
+  <NAZEV_STRP>Aktiv nezávislých občanů</NAZEV_STRP>
+  <ZKRATKAP30>Aktiv nezávislých občanů</ZKRATKAP30>
+  <ZKRATKAP8>ANEO</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>133</PSTRANA>
+  <NAZEV_STRP>Cesta změny</NAZEV_STRP>
+  <ZKRATKAP30>Cesta změny</ZKRATKAP30>
+  <ZKRATKAP8>CZ</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>134</PSTRANA>
+  <NAZEV_STRP>&quot;Sebeobrana voličů-Váš hlas pro zdravotn. obvodu&quot;</NAZEV_STRP>
+  <ZKRATKAP30>&quot;Sebeobrana voličů-Váš hlas&quot;</ZKRATKAP30>
+  <ZKRATKAP8>SeVo</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>135</PSTRANA>
+  <NAZEV_STRP>Naděje</NAZEV_STRP>
+  <ZKRATKAP30>Naděje</ZKRATKAP30>
+  <ZKRATKAP8>N</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>136</PSTRANA>
+  <NAZEV_STRP>Tábor 2002</NAZEV_STRP>
+  <ZKRATKAP30>Tábor 2002</ZKRATKAP30>
+  <ZKRATKAP8>T2002</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>137</PSTRANA>
+  <NAZEV_STRP>Strana zdravého rozumu</NAZEV_STRP>
+  <ZKRATKAP30>Strana zdravého rozumu</ZKRATKAP30>
+  <ZKRATKAP8>SZR</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>138</PSTRANA>
+  <NAZEV_STRP>Liberální reformní strana</NAZEV_STRP>
+  <ZKRATKAP30>Liberální reformní strana</ZKRATKAP30>
+  <ZKRATKAP8>LiRA</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>139</PSTRANA>
+  <NAZEV_STRP>Volba pro budoucnost</NAZEV_STRP>
+  <ZKRATKAP30>Volba pro budoucnost</ZKRATKAP30>
+  <ZKRATKAP8>VPB</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>140</PSTRANA>
+  <NAZEV_STRP>Balbínova poetická strana</NAZEV_STRP>
+  <ZKRATKAP30>Balbínova poetická strana</ZKRATKAP30>
+  <ZKRATKAP8>BPS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>141</PSTRANA>
+  <NAZEV_STRP>Národní sjednocení</NAZEV_STRP>
+  <ZKRATKAP30>Národní sjednocení</ZKRATKAP30>
+  <ZKRATKAP8>NSJ</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>142</PSTRANA>
+  <NAZEV_STRP>Sdružení pro zdraví, sport a prosperitu</NAZEV_STRP>
+  <ZKRATKAP30>Sdr.pro zdr.,sport a prosper.</ZKRATKAP30>
+  <ZKRATKAP8>SZSP</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>143</PSTRANA>
+  <NAZEV_STRP>Evropští demokraté</NAZEV_STRP>
+  <ZKRATKAP30>Evropští demokraté</ZKRATKAP30>
+  <ZKRATKAP8>ED</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>144</PSTRANA>
+  <NAZEV_STRP>Věci veřejné</NAZEV_STRP>
+  <ZKRATKAP30>Věci veřejné</ZKRATKAP30>
+  <ZKRATKAP8>VV</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>145</PSTRANA>
+  <NAZEV_STRP>&quot;Jirkov 21.století&quot;</NAZEV_STRP>
+  <ZKRATKAP30>&quot;Jirkov 21.století&quot;</ZKRATKAP30>
+  <ZKRATKAP8>J 21 S</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>146</PSTRANA>
+  <NAZEV_STRP>Nezávislí pro Prahu</NAZEV_STRP>
+  <ZKRATKAP30>Nezávislí pro Prahu</ZKRATKAP30>
+  <ZKRATKAP8>NPP</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>147</PSTRANA>
+  <NAZEV_STRP>Hnutí za práva občanů</NAZEV_STRP>
+  <ZKRATKAP30>Hnutí za práva občanů</ZKRATKAP30>
+  <ZKRATKAP8>HZPO</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>148</PSTRANA>
+  <NAZEV_STRP>Sdružení nájemníků Prahy 1</NAZEV_STRP>
+  <ZKRATKAP30>Sdružení nájemníků Prahy 1</ZKRATKAP30>
+  <ZKRATKAP8>SON</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>149</PSTRANA>
+  <NAZEV_STRP>Sociálně demokratická aliance nezávislých</NAZEV_STRP>
+  <ZKRATKAP30>Sociálně demokrat.aliance nez.</ZKRATKAP30>
+  <ZKRATKAP8>SDAN</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>150</PSTRANA>
+  <NAZEV_STRP>Sdružení za lepší Vrchlabí</NAZEV_STRP>
+  <ZKRATKAP30>Sdružení za lepší Vrchlabí</ZKRATKAP30>
+  <ZKRATKAP8>SZLV</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>151</PSTRANA>
+  <NAZEV_STRP>Helax-Ostrava se baví</NAZEV_STRP>
+  <ZKRATKAP30>Helax-Ostrava se baví</ZKRATKAP30>
+  <ZKRATKAP8>HOB</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>152</PSTRANA>
+  <NAZEV_STRP>&quot;Národní strana&quot;</NAZEV_STRP>
+  <ZKRATKAP30>&quot;Národní strana&quot;</ZKRATKAP30>
+  <ZKRATKAP8>&quot;NS&quot;</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>153</PSTRANA>
+  <NAZEV_STRP>Dělnická strana</NAZEV_STRP>
+  <ZKRATKAP30>Dělnická strana</ZKRATKAP30>
+  <ZKRATKAP8>DS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>154</PSTRANA>
+  <NAZEV_STRP>Všeobecná občanská strana</NAZEV_STRP>
+  <ZKRATKAP30>Všeobecná občanská strana</ZKRATKAP30>
+  <ZKRATKAP8>VOS</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>155</PSTRANA>
+  <NAZEV_STRP>SVOBODNÍ</NAZEV_STRP>
+  <ZKRATKAP30>SVOBODNÍ</ZKRATKAP30>
+  <ZKRATKAP8>S</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>156</PSTRANA>
+  <NAZEV_STRP>Strana občanů republiky České</NAZEV_STRP>
+  <ZKRATKAP30>Strana občanů republiky České</ZKRATKAP30>
+  <ZKRATKAP8>SORČ</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>157</PSTRANA>
+  <NAZEV_STRP>Demokratická Unie České republiky</NAZEV_STRP>
+  <ZKRATKAP30>Demokratická Unie České rep.</ZKRATKAP30>
+  <ZKRATKAP8>DEUČR</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>158</PSTRANA>
+  <NAZEV_STRP>&quot;Sdružení nestraníků&quot;</NAZEV_STRP>
+  <ZKRATKAP30>&quot;Sdružení nestraníků&quot;</ZKRATKAP30>
+  <ZKRATKAP8>SN</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>159</PSTRANA>
+  <NAZEV_STRP>Strana práce</NAZEV_STRP>
+  <ZKRATKAP30>Strana práce</ZKRATKAP30>
+  <ZKRATKAP8>SP</ZKRATKAP8>
+ </CPP_ROW>
+ <CPP_ROW>
+  <PSTRANA>160</PSTRANA>
+  <NAZEV_STRP>&quot;Viktor Kožený - Občanská federální demokracie&quot;</NAZEV_STRP>
+  <ZKRATKAP30>&quot;V.Kožený-Občan.feder.demokr.&quot;</ZKRATKAP30>
+  <ZKRATKAP8>&quot;OFD&quot;</ZKRATKAP8>
+ </CPP_ROW>
+</CPP>
