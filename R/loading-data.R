@@ -72,6 +72,7 @@ VSTRANA_MAP_98 <- c(
     "5" ="ODS", 
     "6" = "OK", 
     "7" ="ČSSD", 
+    "8"="MODS",
     "9" = "KSČM", 
     "10" ="SPR-RSČ",
     "11" = "US", 
@@ -86,14 +87,15 @@ VSTRANA_MAP_98 <- c(
 
 clean_ps <- function(df, VSTRANA_MAP){
     df %>%
-        mutate(NSTRANA = purrr::map_chr(VSTRANA, function(x) VSTRANA_MAP[as.character(x)]), 
-               KSTRANA = purrr::map_chr(VSTRANA, function(x) VSTRANA_MAP[as.character(x)]), 
+        mutate(ZKRATKAN8 = purrr::map_chr(VSTRANA, function(x) VSTRANA_MAP[as.character(x)]), 
+               # KSTRANA = purrr::map_chr(VSTRANA, function(x) VSTRANA_MAP[as.character(x)]), 
                TITULZA = stringr::str_extract(PRIJMENI, ",[A-Za-z,\\. ]+") %>% gsub(",[ ]*", "", .), 
                PRIJMENI = stringr::str_remove(PRIJMENI, ",[A-Za-z,\\. ]+")
                ) %>%
         select(-VSTRANA) %>%
         rename(NAZEV_STRK = NAZEV_VSTRANA, 
-               TITULPRED = TITUL)
+               TITULPRED = TITUL, 
+               POCPROCVSE = PROCHLASU)
         
 }
 
