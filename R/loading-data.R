@@ -23,6 +23,55 @@ categorize_titles <- function(x){
            ordered = TRUE)
 }
 
+extract_titles_from_last_name <- function(x){
+    REPLACEMENT_VECTOR <- c(
+        "\\bDoc\\sIng\\b"="Doc. Ing.",
+        "\\bDocent\\sCSc"="Doc. CSc.",
+        "\\bProf\\sIng\\sDrSc\\b"="Prof. Ing. DrSc.",
+        "\\bDocPhDrCSc\\b"="Doc. PhDr. CSc.",
+        "\\bDocMUDrDrSc\\b"="Doc. MUDr. DrSc.",
+        "\\bTh Lic P."="ThLic. P.",
+        "\\bIng\\b"="Ing\\.", 
+        "\\bing\\b"="Ing\\.",
+        "\\bMUDr\\b"="MUDr\\.",
+        "\\bMudr\\b"="MUDr.",
+        "\\bPharmDr\\b"="PharmDr.",
+        "\\bPhMr\\b"="PhMr.",
+        "\\bMgr\\b"="Mgr.",
+        "\\bMUC\\b"="MUC.",
+        "\\bPharm\\sDr."="PharmDr.",
+        "\\bJUDr\\b"="JUDr.",
+        "\\bPhDr\\b"="PhDr.",
+        "\\bMVDr\\b"="MVDr.",
+        "\\bDr\\b"="Dr.",
+        "\\bMGr\\b"="Mgr.",
+        "\\bRnDr\\b"="RNDr.",
+        "\\bRNDr\\b"="RNDr.",
+        "\\bPaedDr\\b"="PaedDr.",
+        "\\bPeadr\\b"="PaedDr.",
+        "\\bRSDr\\b"="RSDr.", 
+        "\\bRsDr\\b"="RSDr.",
+        "\\bPaeDr\\b"="PaeDr.",
+        "\\bBc\\b"="Bc.",
+        "\\bTh,Mgr\\b"="ThMgr",
+        "\\bRN Mgr\\b"="Mgr",
+        "\\(ml\\.\\)"="ml.",
+        "\\bml\\b"="ml.",
+        "\\bst\\b"="st.",
+        "\\bdpt\\b"=""
+    )
+    x %>%
+        mutate(PRIJMENI = stringr::str_replace_all(PRIJMENI, REPLACEMENT_VECTOR)) %>%
+        mutate(TITULY = paste(stringr::str_extract_all(PRIJMENI, "\\s[A-Za-z]+\\.[A-Ža-ž. ]*|,[^,]+"), 
+                              sep = " "), 
+               PRIJMENI = stringr::str_trim(
+                   stringr::str_remove_all(PRIJMENI, "\\s[A-Za-z]+\\.[A-Ža-ž. ]*|,[^,]+"))) %>%
+        mutate(PRIJMENI = stringr::str_trim(gsub("\\.", "", PRIJMENI)), 
+               TITULY = stringr::str_trim(gsub("\\.\\.", "\\.", TITULY))) %>%
+        mutate(TITULY = ifelse(TITULY == "character(0)", NA_character_, TITULY), 
+               TITUL_KATEGORIE = categorize_titles(TITULY))
+}
+
 merge_and_recode_titles <- function(df){
     df %>%
         mutate(TITULY = case_when(!is.na(TITULPRED) & !is.na(TITULZA) ~ paste(TITULPRED, ", ", TITULZA), 
@@ -243,4 +292,16 @@ read_candidates_xml <- function(list_path, parties_df, cpp_df, cns_df,
         mutate(row_id = row_number(), 
                ROK_NAROZENI = year - VEK) %>%
         merge_and_recode_titles
+}
+
+filter_city_districts <- function(df, district_map){
+    df %>% 
+        filter(KODZASTUP %in% district_map$CITY_DISTRICT) %>%
+        left_join(., district_map, by = c("KODZASTUP"="CITY_DISTRICT"))
+}
+
+filter_municipalities <- function(df, district_map){
+    df %>%
+        filter(!KODZASTUP %in% district_map$CITY_DISTRICT) %>%
+        mutate(MUNICIPALITY = KODZASTUP)
 }
