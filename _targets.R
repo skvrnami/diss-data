@@ -7,7 +7,8 @@ source("R/matching.R")
 tar_option_set(packages = c("dplyr", "rvest", "here", # "listr", 
                             "rimr", "readxl", "readr"))
 
-# TODO: zkontrolovat rekodovani titulu
+# TODO: check academic title recoding 
+# TODO: check last name capitalization
 
 list(
     
@@ -460,8 +461,33 @@ list(
     # Regional elections ----------------------------------
     #######################################################
     
-    # TODO: 2000
-    # TODO: 2004
+    tar_target(reg_2000, command = {
+        cpp <- read_cpp(here("data", "KZ2000", "CPPKZ00.xlsx"))
+        cns <- cpp %>% rename(NSTRANA = PSTRANA, ZKRATKAN8 = ZKRATKAP8)
+        list_path <- here("data", "KZ2000", "KZ00-Registr_kandidatu.xlsx")
+        year <- as.numeric(stringr::str_extract(list_path, "[0-9]{4}"))
+        read_excel(list_path) %>%
+            left_join(., cpp, by = "PSTRANA") %>%
+            left_join(., cns, by = "NSTRANA") %>%
+            mutate(row_id = row_number(), 
+                   ROK_NAROZENI = year - VEK) %>%
+            merge_and_recode_titles %>%
+            rename(NAZEV_STRK = KSTRANA_NAZEV)
+    }),
+    
+    tar_target(reg_2004, command = {
+        cpp <- read_cpp(here("data", "KZ2004", "CPPKZ04.xlsx"))
+        cns <- cpp %>% rename(NSTRANA = PSTRANA, ZKRATKAN8 = ZKRATKAP8)
+        list_path <- here("data", "KZ2004", "KZ04-Registr_kandidatu.xlsx")
+        year <- as.numeric(stringr::str_extract(list_path, "[0-9]{4}"))
+        read_excel(list_path) %>%
+            left_join(., cpp, by = "PSTRANA") %>%
+            left_join(., cns, by = "NSTRANA") %>%
+            mutate(row_id = row_number(), 
+                   ROK_NAROZENI = year - VEK) %>%
+            merge_and_recode_titles %>%
+            rename(NAZEV_STRK = KSTRANA_NAZEV)
+    }),
     
     tar_target(reg_2008, command = {
         parties <- read_parties(here("data", "KZ2008", "kz2008_data_dbf", "KZRKL.xlsx"), 
@@ -511,7 +537,56 @@ list(
     
     ## Matching -------------------------------------------
     
+    tar_target(reg_00_04, match_reg(reg_2000, reg_2004) %>% rename_cols(., "reg_2000", "reg_2004")), 
+    
+    tar_target(reg_04_08, match_reg(reg_2004, reg_2008) %>% rename_cols(., "reg_2004", "reg_2008")),
+    
+    tar_target(reg_00_08, command = {
+        missing_08 <- find_missing(reg_2008, "row_id", reg_04_08$reg_2008)
+        missing_data_08 <- return_missing_data(reg_2008, "row_id", missing_08)
+        noncons_00 <- return_nonconsecutive_data(reg_00_04, reg_2000, reg_2004, 
+                                                 "row_id")
+        match_reg(noncons_00, missing_data_08) %>% rename_cols(., "reg_2000", "reg_2008")
+    }),
+    
+    tar_target(missing_reg_08, find_missing(reg_2008, "row_id", 
+                                           c(reg_04_08$reg_2008, 
+                                             reg_00_08$reg_2008)) %>% 
+                   rename(reg_2004=from, reg_2008=to)),
+    
+    tar_target(out_reg_00_08, full_join(reg_00_04, reg_04_08, "reg_2004") %>%
+                   insert_nonconsecutive(., reg_00_08, "reg_2000", "reg_2008") %>%
+                   bind_rows(missing_reg_08)),
+    
     tar_target(reg_08_12, match_reg(reg_2008, reg_2012) %>% rename_cols(., "reg_2008", "reg_2012")), 
+    
+    tar_target(reg_04_12, command = {
+        missing_12 <- find_missing(reg_2012, "row_id", reg_08_12$reg_2012)
+        missing_data_12 <- return_missing_data(reg_2012, "row_id", missing_12)
+        noncons_04 <- return_nonconsecutive_data(out_reg_00_08, reg_2004, reg_2008, 
+                                                 "row_id")
+        match_reg(noncons_04, missing_data_12) %>% rename_cols(., "reg_2004", "reg_2012")
+    }),
+    
+    tar_target(reg_00_12, command = {
+        missing_12 <- find_missing(reg_2012, "row_id", c(reg_08_12$reg_2012, 
+                                                         reg_04_12$reg_2012))
+        missing_data_12 <- return_missing_data(reg_2012, "row_id", missing_12)
+        noncons_00 <- return_nonconsecutive_data(out_reg_00_08, reg_2000, reg_2004, 
+                                                 "row_id")
+        match_reg(noncons_00, missing_data_12) %>% rename_cols(., "reg_2000", "reg_2012")
+    }),
+    
+    tar_target(missing_reg_12, find_missing(reg_2012, "row_id", 
+                                            c(reg_08_12$reg_2012,
+                                              reg_04_12$reg_2012, 
+                                              reg_00_12$reg_2012)) %>% 
+                   rename(reg_2008=from, reg_2012=to)),
+    
+    tar_target(out_reg_00_12, full_join(out_reg_00_08, reg_08_12, "reg_2008") %>%
+                   insert_nonconsecutive(., reg_04_12, "reg_2004", "reg_2012") %>%
+                   insert_nonconsecutive(., reg_08_12, "reg_2008", "reg_2012") %>%
+                   bind_rows(missing_reg_12)),
     
     tar_target(reg_12_16, match_reg(reg_2012, reg_2016) %>% rename_cols(., "reg_2012", "reg_2016")), 
     
@@ -523,12 +598,35 @@ list(
         match_reg(noncons_08, missing_data_16) %>% rename_cols(., "reg_2008", "reg_2016")
     }), 
     
+    tar_target(reg_04_16, command = {
+        missing_16 <- find_missing(reg_2016, "row_id", c(reg_12_16$reg_2016, 
+                                                         reg_08_16$reg_2016))
+        missing_data_16 <- return_missing_data(reg_2016, "row_id", missing_16)
+        noncons_04 <- return_nonconsecutive_data(out_reg_00_12, reg_2004, reg_2008, 
+                                                 "row_id")
+        match_reg(noncons_04, missing_data_16) %>% rename_cols(., "reg_2004", "reg_2016")
+    }), 
+
+    tar_target(reg_00_16, command = {
+        missing_16 <- find_missing(reg_2016, "row_id", c(reg_12_16$reg_2016, 
+                                                         reg_08_16$reg_2016, 
+                                                         reg_04_16$reg_2016))
+        missing_data_16 <- return_missing_data(reg_2016, "row_id", missing_16)
+        noncons_00 <- return_nonconsecutive_data(out_reg_00_12, reg_2000, reg_2004, 
+                                                 "row_id")
+        match_reg(noncons_00, missing_data_16) %>% rename_cols(., "reg_2000", "reg_2016")
+    }),
+    
     tar_target(missing_reg_2016, find_missing(reg_2016, "row_id", c(reg_12_16$reg_2016, 
-                                                                    reg_08_16$reg_2016)) %>%
+                                                                    reg_08_16$reg_2016, 
+                                                                    reg_04_16$reg_2016, 
+                                                                    reg_00_16$reg_2016)) %>%
                    rename(reg_2012=from, reg_2016=to)),
     
-    tar_target(out_08_16, full_join(reg_08_12, reg_12_16, by = "reg_2012") %>%
+    tar_target(out_reg_00_16, full_join(out_reg_00_12, reg_12_16, by = "reg_2012") %>%
                    insert_nonconsecutive(., reg_08_16, "reg_2008", "reg_2016") %>%
+                   insert_nonconsecutive(., reg_04_16, "reg_2004", "reg_2016") %>%
+                   insert_nonconsecutive(., reg_00_16, "reg_2000", "reg_2016") %>%
                    bind_rows(missing_reg_2016)), 
     
     tar_target(reg_16_20, match_reg(reg_2016, reg_2020) %>% rename_cols(., "reg_2016", "reg_2020")), 
@@ -536,7 +634,7 @@ list(
     tar_target(reg_12_20, command = {
         missing_20 <- find_missing(reg_2020, "row_id", reg_16_20$reg_2020)
         missing_data_20 <- return_missing_data(reg_2020, "row_id", missing_20)
-        noncons_12 <- return_nonconsecutive_data(out_08_16, reg_2012, reg_2016, "row_id")
+        noncons_12 <- return_nonconsecutive_data(out_reg_00_16, reg_2012, reg_2016, "row_id")
         
         match_reg(noncons_12, missing_data_20) %>% rename_cols(., "reg_2012", "reg_2020")
     }),
@@ -545,30 +643,57 @@ list(
         missing_20 <- find_missing(reg_2020, "row_id", c(reg_16_20$reg_2020, 
                                                          reg_12_20$reg_2020))
         missing_data_20 <- return_missing_data(reg_2020, "row_id", missing_20)
-        noncons_08 <- return_nonconsecutive_data(out_08_16, reg_2008, reg_2012, "row_id")
+        noncons_08 <- return_nonconsecutive_data(out_reg_00_16, reg_2008, reg_2012, "row_id")
         
         match_reg(noncons_08, missing_data_20) %>% rename_cols(., "reg_2008", "reg_2020")
     }),
     
+    tar_target(reg_04_20, command = {
+        missing_20 <- find_missing(reg_2020, "row_id", c(reg_16_20$reg_2020, 
+                                                         reg_12_20$reg_2020, 
+                                                         reg_08_20$reg_2020))
+        missing_data_20 <- return_missing_data(reg_2020, "row_id", missing_20)
+        noncons_04 <- return_nonconsecutive_data(out_reg_00_16, reg_2004, reg_2008, "row_id")
+        
+        match_reg(noncons_04, missing_data_20) %>% rename_cols(., "reg_2004", "reg_2020")
+    }),
+    
+    tar_target(reg_00_20, command = {
+        missing_20 <- find_missing(reg_2020, "row_id", c(reg_16_20$reg_2020, 
+                                                         reg_12_20$reg_2020, 
+                                                         reg_08_20$reg_2020, 
+                                                         reg_04_20$reg_2020))
+        missing_data_20 <- return_missing_data(reg_2020, "row_id", missing_20)
+        noncons_00 <- return_nonconsecutive_data(out_reg_00_16, reg_2000, reg_2004, "row_id")
+        
+        match_reg(noncons_00, missing_data_20) %>% rename_cols(., "reg_2000", "reg_2020")
+    }),
+    
     tar_target(missing_reg_2020, find_missing(reg_2020, "row_id", c(reg_16_20$reg_2020, 
                                                                     reg_12_20$reg_2020, 
-                                                                    reg_08_20$reg_2020)) %>%
+                                                                    reg_08_20$reg_2020, 
+                                                                    reg_04_20$reg_2020, 
+                                                                    reg_00_20$reg_2020)) %>%
                    rename(reg_2016=from, reg_2020=to)),
     
-    tar_target(out_08_20, full_join(out_08_16, reg_16_20, "reg_2016") %>%
+    tar_target(out_reg_00_20, full_join(out_reg_00_16, reg_16_20, "reg_2016") %>%
                    insert_nonconsecutive(., reg_12_20, "reg_2012", "reg_2020") %>%
                    insert_nonconsecutive(., reg_08_20, "reg_2008", "reg_2020") %>%
+                   insert_nonconsecutive(., reg_04_20, "reg_2004", "reg_2020") %>%
+                   insert_nonconsecutive(., reg_00_20, "reg_2000", "reg_2020") %>%
                    bind_rows(., missing_reg_2020)),
     
     tar_target(reg_panel, command = {
         all_data <- bind_rows(
+            reg_2000 %>% mutate(data = "reg_2000"), 
+            reg_2004 %>% mutate(data = "reg_2004"), 
             reg_2008 %>% mutate(data = "reg_2008"), 
             reg_2012 %>% mutate(data = "reg_2012"), 
             reg_2016 %>% mutate(data = "reg_2016"), 
             reg_2020 %>% mutate(data = "reg_2020")
         )
         
-        create_panel(out_08_20, "row_id", all_data)
+        create_panel(out_reg_00_20, "row_id", all_data)
     }),
     
     #######################################################
@@ -607,7 +732,7 @@ list(
             rename(TITULY = TITUL) %>%
             mutate(row_id = row_number(), 
                    ROK_NAROZENI = year - VEK, 
-                   TITULY_KATEGORIE = categorize_titles(TITULY))
+                   TITUL_KATEGORIE = categorize_titles(TITULY))
     }),
     
     tar_target(mun_2002, command = {
@@ -1203,6 +1328,65 @@ list(
     # TODO: Senate ----------------------------------------
     
     # TODO: Matching panels -------------------------------
+    
+    tar_target(mcm_panels_joined, command = {
+        district_panel <- mc_panel %>%
+           arrange(JMENO, PRIJMENI, id) %>%
+           mutate(new_row_id = row_number(), 
+                  person_id = paste0("MC", as.character(id)))
+        
+        mun_panel <- m_panel %>%
+           arrange(JMENO, PRIJMENI, id) %>%
+           mutate(new_row_id = row_number(),
+                  person_id = paste0("M", as.character(id)))
+        
+        find_all_similar(district_panel, mun_panel, start = 1, 
+                        cores = 4,
+                        eq = c("JMENO", "PRIJMENI", "MUNICIPALITY"),
+                        eq_tol = list(c("ROK_NAROZENI", 1)),
+                        id = "new_row_id",
+                        compare_cols = c("JMENO", "PRIJMENI", "ROK_NAROZENI",
+                                         "POVOLANI", "BYDLISTEN", "TITULY",
+                                         "TITUL_KATEGORIE", "PSTRANA", "NSTRANA",
+                                         "MUNICIPALITY"),
+                        deduplicate = FALSE) -> mc_m_pivot
+
+        # TODO: rethink it, maybe? (another round of deduplication)
+       # Check if the same person runs in multiple districts at the same time
+       
+       lookup_person_unique_keys <- function(person_id){
+           if(person_id %in% unique_keys$district_person){
+               unique_keys$municipal_person[unique_keys$district_person == person_id]
+           }else{
+               person_id
+           }
+       }
+
+       mc_m_pivot %>%
+           filter(!is.na(mun_panel)) %>%
+           rename(m_panel2 = mun_panel, mc_panel2 = district_panel) %>%
+           mutate(
+               municipal_person = purrr::map_chr(m_panel2, function(x) {
+                   mun_panel$id[x]
+                   }),
+               district_person = purrr::map_chr(mc_panel2, function(x) {
+                   district_panel$id[x]
+               })) %>%
+           select(municipal_person, district_person) %>%
+           unique() %>%
+           group_by(municipal_person) %>%
+           mutate(n = n()) %>%
+           ungroup() %>%
+           group_by(district_person) %>%
+           mutate(n_d = n()) %>%
+           ungroup() %>%
+           filter(n_d == 1) -> unique_keys
+
+       district_panel %>%
+           mutate(person_id = purrr::map_chr(person_id, lookup_person_unique_keys)) %>%
+           bind_rows(., mun_panel)
+       
+    }),
     
     NULL
 )
