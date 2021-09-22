@@ -8,7 +8,6 @@ tar_option_set(packages = c("dplyr", "rvest", "here", # "listr",
                             "rimr", "readxl", "readr"))
 
 # TODO: check academic title recoding 
-# TODO: check last name capitalization
 
 list(
     
@@ -714,7 +713,13 @@ list(
             left_join(., cpp, by = "PSTRANA") %>%
             left_join(., cns, by = "NSTRANA") %>%
             mutate(row_id = row_number(), 
-                   ROK_NAROZENI = year - VEK) %>%
+                   ROK_NAROZENI = year - VEK, 
+                   JMENO = ifelse(JMENO == toupper(JMENO), 
+                                     stringr::str_to_title(JMENO, locale = "cs"), 
+                                     JMENO),
+                   PRIJMENI = ifelse(PRIJMENI == toupper(PRIJMENI), 
+                                     stringr::str_to_title(PRIJMENI, locale = "cs"), 
+                                     PRIJMENI)) %>%
             extract_titles_from_last_name()
     }),
     
@@ -732,7 +737,13 @@ list(
             rename(TITULY = TITUL) %>%
             mutate(row_id = row_number(), 
                    ROK_NAROZENI = year - VEK, 
-                   TITUL_KATEGORIE = categorize_titles(TITULY))
+                   TITUL_KATEGORIE = categorize_titles(TITULY), 
+                   JMENO = ifelse(JMENO == toupper(JMENO), 
+                                  stringr::str_to_title(JMENO, locale = "cs"), 
+                                  JMENO),
+                   PRIJMENI = ifelse(PRIJMENI == toupper(PRIJMENI), 
+                                     stringr::str_to_title(PRIJMENI, locale = "cs"), 
+                                     PRIJMENI))
     }),
     
     tar_target(mun_2002, command = {
@@ -747,7 +758,13 @@ list(
             left_join(., cns, by = "NSTRANA") %>%
             merge_and_recode_titles %>%
             mutate(row_id = row_number(), 
-                   ROK_NAROZENI = year - VEK)
+                   ROK_NAROZENI = year - VEK, 
+                   JMENO = ifelse(JMENO == toupper(JMENO), 
+                                  stringr::str_to_title(JMENO, locale = "cs"), 
+                                  JMENO),
+                   PRIJMENI = ifelse(PRIJMENI == toupper(PRIJMENI), 
+                                     stringr::str_to_title(PRIJMENI, locale = "cs"), 
+                                     PRIJMENI))
     }),
     
     tar_target(mun_2006, command = {
@@ -755,7 +772,13 @@ list(
         cpp <- read_cpp_xml(here("data", "KV2006", "KV2006ciselniky20140909", "cpp.xml"))
         cns <- read_cns_xml(here("data", "KV2006", "KV2006ciselniky20140909", "cns.xml"))
         read_municipal_candidates(here("data", "KV2006", "KV2006reg20140909_xlsx", "kvrk.xlsx"), 
-                                  parties, cpp, cns)
+                                  parties, cpp, cns) %>%
+            mutate(JMENO = ifelse(JMENO == toupper(JMENO), 
+                                  stringr::str_to_title(JMENO, locale = "cs"), 
+                                  JMENO),
+                   PRIJMENI = ifelse(PRIJMENI == toupper(PRIJMENI), 
+                                     stringr::str_to_title(PRIJMENI, locale = "cs"), 
+                                     PRIJMENI))
     }),
     
     tar_target(mun_2010, command = {
@@ -763,7 +786,13 @@ list(
         cpp <- read_cpp_xml(here("data", "KV2010", "KV2010ciselniky20140903", "cpp.xml"))
         cns <- read_cns_xml(here("data", "KV2010", "KV2010ciselniky20140903", "cns.xml"))
         read_municipal_candidates(here("data", "KV2010", "KV2010reg20140903_xlsx", "kvrk.xlsx"), 
-                                  parties, cpp, cns)
+                                  parties, cpp, cns) %>%
+            mutate(JMENO = ifelse(JMENO == toupper(JMENO), 
+                                  stringr::str_to_title(JMENO, locale = "cs"), 
+                                  JMENO),
+                   PRIJMENI = ifelse(PRIJMENI == toupper(PRIJMENI), 
+                                     stringr::str_to_title(PRIJMENI, locale = "cs"), 
+                                     PRIJMENI))
     }),
     
     tar_target(mun_2014, command = {
@@ -771,7 +800,13 @@ list(
         cpp <- read_cpp_xml(here("data", "KV2014", "KV2014ciselniky20141008", "cpp.xml"))
         cns <- read_cns_xml(here("data", "KV2014", "KV2014ciselniky20141008", "cns.xml"))
         read_municipal_candidates(here("data", "KV2014", "KV2014reg20141014_xlsx", "kvrk.xlsx"), 
-                                  parties, cpp, cns)
+                                  parties, cpp, cns) %>%
+            mutate(JMENO = ifelse(JMENO == toupper(JMENO), 
+                                  stringr::str_to_title(JMENO, locale = "cs"), 
+                                  JMENO),
+                   PRIJMENI = ifelse(PRIJMENI == toupper(PRIJMENI), 
+                                     stringr::str_to_title(PRIJMENI, locale = "cs"), 
+                                     PRIJMENI))
     }),
     
     tar_target(mun_2018, command = {
@@ -781,7 +816,13 @@ list(
         read_municipal_candidates(here("data", "KV2018", "KV2018reg20181008_xlsx", "kvrk.xlsx"), 
                         parties, cpp, cns) %>%
             mutate(PLATNOST = ifelse(PLATNOST == "A", 0, 1), 
-                   MANDAT = ifelse(MANDAT == "N", 0, 1))
+                   MANDAT = ifelse(MANDAT == "N", 0, 1), 
+                   JMENO = ifelse(JMENO == toupper(JMENO), 
+                                  stringr::str_to_title(JMENO, locale = "cs"), 
+                                  JMENO),
+                   PRIJMENI = ifelse(PRIJMENI == toupper(PRIJMENI), 
+                                     stringr::str_to_title(PRIJMENI, locale = "cs"), 
+                                     PRIJMENI))
     }),
     
     ## City districts -------------------------------------
@@ -1327,18 +1368,21 @@ list(
     
     # TODO: Senate ----------------------------------------
     
-    # TODO: Matching panels -------------------------------
+    #################################################
+    # Matching panels -------------------------------
+    #################################################
     
+    # Municipality + city district
     tar_target(mcm_panels_joined, command = {
         district_panel <- mc_panel %>%
-           arrange(JMENO, PRIJMENI, id) %>%
+           arrange(JMENO, PRIJMENI) %>%
            mutate(new_row_id = row_number(), 
-                  person_id = paste0("MC", as.character(id)))
+                  id = paste0("D", as.character(id)))
         
         mun_panel <- m_panel %>%
-           arrange(JMENO, PRIJMENI, id) %>%
-           mutate(new_row_id = row_number(),
-                  person_id = paste0("M", as.character(id)))
+           arrange(JMENO, PRIJMENI) %>%
+           mutate(new_row_id = row_number(), 
+                  id = paste0("M", as.character(id)))
         
         find_all_similar(district_panel, mun_panel, start = 1, 
                         cores = 4,
@@ -1351,42 +1395,130 @@ list(
                                          "MUNICIPALITY"),
                         deduplicate = FALSE) -> mc_m_pivot
 
+        mc_m_pivot %>%
+            filter(!is.na(mun_panel)) -> mun_cast_pivot_both
+        
+        purrr::map_chr(mun_cast_pivot_both$mun_panel, function(x) 
+            mun_panel$id[x]) -> mun_cast_pivot_both$municipal_person
+        purrr::map_chr(mun_cast_pivot_both$district_panel, function(x) 
+            district_panel$id[x]) -> mun_cast_pivot_both$district_person
+        
         # TODO: rethink it, maybe? (another round of deduplication)
-       # Check if the same person runs in multiple districts at the same time
-       
-       lookup_person_unique_keys <- function(person_id){
-           if(person_id %in% unique_keys$district_person){
-               unique_keys$municipal_person[unique_keys$district_person == person_id]
-           }else{
-               person_id
-           }
-       }
-
-       mc_m_pivot %>%
-           filter(!is.na(mun_panel)) %>%
-           rename(m_panel2 = mun_panel, mc_panel2 = district_panel) %>%
-           mutate(
-               municipal_person = purrr::map_chr(m_panel2, function(x) {
-                   mun_panel$id[x]
-                   }),
-               district_person = purrr::map_chr(mc_panel2, function(x) {
-                   district_panel$id[x]
-               })) %>%
-           select(municipal_person, district_person) %>%
-           unique() %>%
-           group_by(municipal_person) %>%
-           mutate(n = n()) %>%
-           ungroup() %>%
-           group_by(district_person) %>%
-           mutate(n_d = n()) %>%
-           ungroup() %>%
-           filter(n_d == 1) -> unique_keys
-
-       district_panel %>%
-           mutate(person_id = purrr::map_chr(person_id, lookup_person_unique_keys)) %>%
-           bind_rows(., mun_panel)
+        # Check if the same person runs in multiple districts at the same time
+        mun_cast_pivot_both %>%
+            select(municipal_person, district_person) %>%
+            unique() %>%
+            group_by(municipal_person) %>%
+            mutate(n = n()) %>%
+            ungroup() %>%
+            group_by(district_person) %>%
+            mutate(n_d = n()) %>% 
+            ungroup() %>%
+            filter(n_d == 1) -> unique_keys
+        
+        lookup_person_unique_keys <- function(person_id){
+            if(person_id %in% unique_keys$district_person){
+                unique_keys$municipal_person[unique_keys$district_person == person_id]    
+            }else{
+                person_id
+            }
+        }
+        
+        district_panel %>%
+            mutate(id = purrr::map_chr(id, lookup_person_unique_keys)) %>%
+            bind_rows(., mun_panel)
        
     }),
+    
+    # Municipality + regional panel
+    
+    tar_target(municipality_region_map, 
+               read_csv(here("data", "obec_kraj.csv"), 
+                        locale = locale(encoding = "WINDOWS-1250")) %>%
+                   select(MUNICIPALITY = CHODNOTA1, REGION = TEXT2) %>% 
+                   mutate(REGION = case_when(REGION == "Plzeňský kraj" ~ 3, 
+                                             REGION == "Liberecký kraj" ~ 6, 
+                                             REGION %in% c("Ostravský kraj", "Moravskoslezský kraj") ~ 13, 
+                                             REGION == "Středočeský kraj" ~ 1, 
+                                             REGION %in% c("Budějovický kraj", "Jihočeský kraj") ~ 2, 
+                                             REGION == "Karlovarský kraj" ~ 4, 
+                                             REGION == "Ústecký kraj" ~ 5, 
+                                             REGION == "Královéhradecký kraj" ~ 7, 
+                                             REGION == "Pardubický kraj" ~ 8, 
+                                             REGION %in% c("Jihlavský kraj", "Kraj Vysočina", "Vysočina") ~ 9, 
+                                             REGION %in% c("Brněnský kraj", "Jihomoravský kraj") ~ 10, 
+                                             REGION == "Olomoucký kraj" ~ 11, 
+                                             REGION == "Zlínský kraj" ~ 12, 
+                                             REGION == "Hlavní město Praha" ~ 0))),
+    
+    tar_target(mcm_reg_panels, command = {
+        mcm_panels_joined %>%
+            left_join(., municipality_region_map, by = "MUNICIPALITY") %>% 
+            mutate(new_row_id = 1:nrow(.)) -> municipal_panel
+        
+        reg_panel %>%
+            mutate(MUNICIPALITY = BYDLISTEK, 
+                   REGION = KRZAST) %>% 
+            mutate(new_row_id = 1:nrow(.)) -> regional_panel
+        
+        find_all_similar(regional_panel, municipal_panel, 
+                         start = 1, 
+                         cores = 4, 
+                         eq = c("JMENO", "PRIJMENI", "REGION"), 
+                         eq_tol = list(c("ROK_NAROZENI", 1)), 
+                         id = "new_row_id", 
+                         compare_cols = c("JMENO", "PRIJMENI", "REGION", 
+                                          "ROK_NAROZENI", 
+                                          "POVOLANI", "BYDLISTEN", "TITULY",
+                                          "TITUL_KATEGORIE", "PSTRANA", "NSTRANA"), 
+                         deduplicate = FALSE) -> mun_reg_pivot
+        
+        municipal_panel %>%
+            mutate(id = paste0("M", as.character(id))) -> municipal_panel
+        
+        regional_panel %>%
+            mutate(id = paste0("R", as.character(id))) -> regional_panel
+        
+        mun_reg_pivot %>%
+            filter(!is.na(municipal_panel)) -> mun_reg_pivot_both
+        
+        purrr::map_chr(mun_reg_pivot_both$municipal_panel, function(x) 
+            municipal_panel$id[x]) -> mun_reg_pivot_both$municipal_person
+        purrr::map_chr(mun_reg_pivot_both$regional_panel, function(x) 
+            regional_panel$id[x]) -> mun_reg_pivot_both$regional_person
+        
+        mun_reg_pivot_both %>%
+            select(municipal_person, regional_person) %>%
+            unique() %>%
+            group_by(municipal_person) %>%
+            mutate(n = n()) %>%
+            ungroup() %>%
+            group_by(regional_person) %>%
+            mutate(n_d = n()) %>% 
+            ungroup() %>%
+            filter(n_d == 1) -> unique_keys
+        
+        lookup_person_unique_keys <- function(person_id){
+            if(person_id %in% unique_keys$regional_person){
+                unique_keys$municipal_person[unique_keys$regional_person == person_id]    
+            }else{
+                person_id
+            }
+        }
+        
+        regional_panel %>%
+            mutate(id = purrr::map_chr(id, lookup_person_unique_keys)) %>%
+            bind_rows(., municipal_panel)
+        
+    }), 
+    
+    tar_target(psp_reg_mun_panels, command = {
+        # TODO
+        #mcm_reg_panels
+        #psp_panel
+    }
+        
+    )
     
     NULL
 )
