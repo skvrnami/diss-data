@@ -8,6 +8,7 @@ tar_option_set(packages = c("dplyr", "rvest", "here", # "listr",
                             "rimr", "readxl", "readr"))
 
 # TODO: check academic title recoding 
+# TODO: check first names: Taťana => Taťána
 
 list(
     
@@ -98,10 +99,10 @@ list(
     }),
     
     tar_target(psp_2021, command = {
-        psp_parties <- read_parties(here("data", "PS2021", "PS2021reg20210824_xlsx", "psrkl.xlsx"))
+        psp_parties <- read_parties(here("data", "PS2021", "PS2021reg20211010_xlsx", "psrkl.xlsx"))
         cpp <- read_cpp(here("data", "PS2021", "PS2021ciselniky20210824", "cpp.xlsx"))
         cns <- read_cns(here("data", "PS2021", "PS2021ciselniky20210824", "cns.xlsx"))
-        read_candidates(here("data", "PS2021", "PS2021reg20210824_xlsx", "psrk.xlsx"), 
+        read_candidates(here("data", "PS2021", "PS2021reg20211010_xlsx", "psrk.xlsx"), 
                         psp_parties, cpp, cns) %>%
             mutate(PLATNOST = ifelse(PLATNOST == "A", 0, 1), 
                    MANDAT = ifelse(MANDAT == "A", 1, 0))
@@ -1512,13 +1513,79 @@ list(
         
     }), 
     
-    tar_target(psp_reg_mun_panels, command = {
-        # TODO
-        #mcm_reg_panels
-        #psp_panel
-    }
+    tar_target(psp_pivot_both, command = {
         
-    )
+        mcm_reg_panels %>%
+            mutate(new_row_id = 1:nrow(.)) -> mun_reg_panel
+        
+        psp_panel %>%
+            mutate(new_row_id = 1:nrow(.), 
+                   REGION = VOLKRAJ - 1) -> p_panel
+        
+        find_all_similar(p_panel, mun_reg_panel, 
+                         start = 1, 
+                         cores = 4, 
+                         eq = c("JMENO", "PRIJMENI"), 
+                         eq_tol = list(c("ROK_NAROZENI", 1)), 
+                         id = "new_row_id", 
+                         compare_cols = c("JMENO", "PRIJMENI", "REGION", 
+                                          "ROK_NAROZENI", 
+                                          "POVOLANI", "BYDLISTEN", "TITULY",
+                                          "TITUL_KATEGORIE", "PSTRANA", "NSTRANA"), 
+                         deduplicate = FALSE) -> psp_pivot
+        
+        p_panel %>%
+            mutate(id = paste0("P", as.character(id))) -> p_panel
+        
+        psp_pivot %>%
+            filter(!is.na(mun_reg_panel)) -> psp_pivot_both
+        
+        purrr::map_chr(psp_pivot_both$mun_reg_panel, function(x) 
+            mun_reg_panel$id[x]) -> psp_pivot_both$mun_reg_person
+        purrr::map_chr(psp_pivot_both$p_panel, function(x) 
+            p_panel$id[x]) -> psp_pivot_both$psp_person
+        
+        psp_pivot_both
+        
+    }),
     
+    tar_target(psp_reg_mun_panels, command = {
+        
+        mcm_reg_panels %>%
+            mutate(new_row_id = 1:nrow(.)) -> mun_reg_panel
+        
+        psp_panel %>%
+            mutate(new_row_id = 1:nrow(.), 
+                   REGION = VOLKRAJ - 1, 
+                   id = paste0("P", as.character(id))) -> p_panel
+        
+        psp_pivot_both %>%
+            select(mun_reg_person, psp_person) %>%
+            unique() %>%
+            group_by(mun_reg_person) %>%
+            mutate(n = n()) %>%
+            ungroup() %>%
+            group_by(psp_person) %>%
+            mutate(n_d = n()) %>% 
+            ungroup() %>%
+            filter(n_d == 1) -> unique_keys
+        
+        lookup_person_unique_keys <- function(person_id){
+            if(person_id %in% unique_keys$psp_person){
+                unique_keys$mun_reg_person[unique_keys$psp_person == person_id]    
+            }else{
+                person_id
+            }
+        }
+        
+        p_panel %>%
+            mutate(id = purrr::map_chr(id, lookup_person_unique_keys)) %>%
+            bind_rows(., mun_reg_panel) 
+    }),
+    
+    tar_target(careers_panel_file,
+        saveRDS(psp_reg_mun_panels, here("output", "career_panel_data.RData"))
+    ),
+
     NULL
 )
