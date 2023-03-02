@@ -364,7 +364,7 @@ list(
         missing_data_21 <- return_missing_data(psp_2021, "row_id", missing_21)
         noncons_13 <- return_nonconsecutive_data(psp_13_17, psp_2013, psp_2017, 
                                                  "row_id")
-        match_psp(noncons_13, missing_data_21) %>% rename_cols(., "psp_2010", "psp_2021")
+        match_psp(noncons_13, missing_data_21) %>% rename_cols(., "psp_2013", "psp_2021")
     }),
     
     tar_target(psp_10_21, command = {
@@ -1584,7 +1584,7 @@ list(
     }),
     
     tar_target(careers_panel_file,
-        saveRDS(psp_reg_mun_panels, here("output", "career_panel_data.RData"))
+        saveRDS(psp_reg_mun_panels, here("output", "career_panel_data.rds"))
     ),
 
     NULL
